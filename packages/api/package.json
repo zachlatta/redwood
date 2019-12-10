@@ -16,6 +16,7 @@
     "graphql": "^14.5.8",
     "graphql-iso-date": "^3.6.1",
     "graphql-tools": "4.0.6",
+    "immer": "^5.0.1",
     "lodash.merge": "^4.6.2"
   },
   "eslintConfig": {
