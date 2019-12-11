@@ -28,7 +28,10 @@
     "build:types": "tsc --declaration --emitDeclarationOnly",
     "build:watch": "nodemon --ignore dist --exec 'yarn build'",
     "prepublish": "yarn build",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test": "yarn jest ./src/",
+    "test:watch": "yarn test --watch"
+
   },
   "gitHead": "32eaaa53d304aea1c49a42b4f15467a3d9114d64"
 }

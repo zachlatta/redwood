@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { GraphQLResolveInfo } from 'graphql'
@@ -63,13 +64,13 @@ const SKIP_SERVICE_FUNCTION_WRAPPERS = ['beforeAction', 'afterAction']
  *
  * ```js
  * // src/services/index.js
- * import { makeServiceObject } from '@hammerframework/api'
+ * import { makeMergedServices } from '@hammerframework/api'
  * import { Photon } from '@prisma/photon'
  *
  * import * as todos from './todos'
  * import * as users from './users'
  *
- * export const services = makeServiceObject({
+ * export const services = makeMergedServices({
  *  services: { todos, users },
  *  context: {
  *    photon: new Photon(),
@@ -98,7 +99,7 @@ const SKIP_SERVICE_FUNCTION_WRAPPERS = ['beforeAction', 'afterAction']
  *
  * ```
  */
-export const makeServiceObject = ({
+export const makeMergedServices = ({
   services,
   context: serviceContext = {},
   copyFromContextToArgs = [],
@@ -127,7 +128,8 @@ export const makeServiceObject = ({
           }
           // we are trying to make services feel as natural as possible
           // and disconnected from GraphQL.
-          const newArgs = produce(args, ({ input = {}, ...argsRest }) => {
+          // @ts-ignore
+          const newArgs = produce(args, ({ input = {}, ...argsRest } = {}) => {
             // 1. A common pattern in graphql is to provide an `input` object for
             // mutations. We flatten those out over here.
             // 2. We also have the ability to pluck values from the context and
@@ -194,6 +196,7 @@ export const makeServiceObject = ({
             ...originalArgs: any
           ) => {
             try {
+              // @ts-ignore
               return await newServiceFunction(...originalArgs)
             } catch (e) {
               console.log(e)

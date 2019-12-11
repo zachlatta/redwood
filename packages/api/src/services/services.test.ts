@@ -1,6 +1,4 @@
-import { isTSAnyKeyword, exportAllDeclaration } from '@babel/types'
-
-import { makeServiceObject } from './services'
+import { makeMergedServices } from './services'
 
 const users = {
   create: () => 1,
@@ -14,14 +12,14 @@ const services = { users, todos }
 
 describe('Services', () => {
   it('Combines services together to make the "Hammer Service Object"', async (done) => {
-    const hs = makeServiceObject({ services })
+    const hs = makeMergedServices({ services })
     expect(await hs.users.create()).toEqual(1)
     expect(await hs.todos.create()).toEqual(2)
     done()
   })
 
   it('Resolves promises and executes functions', async (done) => {
-    const hs = makeServiceObject({ services })
+    const hs = makeMergedServices({ services })
     expect(await hs.todos.create()).toEqual(2)
     expect(await hs.todos.asyncToggleDone()).toEqual(4)
     done()
@@ -29,7 +27,7 @@ describe('Services', () => {
 
   it('Executes "beforeAction," "realAction," and "afterAction" in the correct order', async (done) => {
     const mockFn = jest.fn((n) => n)
-    const hs = makeServiceObject({
+    const hs = makeMergedServices({
       services: {
         yoyo: {
           beforeAction: () => mockFn(1),
@@ -48,10 +46,10 @@ describe('Services', () => {
   })
 
   it('Supplies a "servicePath" argument', async (done) => {
-    const hs = makeServiceObject({
+    const hs = makeMergedServices({
       services: {
         posts: {
-          allPosts: ({ servicePath }) =>
+          allPosts: (_args, { servicePath }) =>
             expect(servicePath).toEqual('posts.allPosts'),
         },
       },
@@ -62,14 +60,14 @@ describe('Services', () => {
 
   describe('context', () => {
     it('Passes an initialization context object to each service', async (done) => {
-      const hs = makeServiceObject({
+      const hs = makeMergedServices({
         services: {
           ctxTest: {
-            beforeAction: ({ context }) =>
+            beforeAction: (_args, { context }) =>
               expect(context.dbUsername).toEqual('peterp'),
-            myAction: ({ context }) =>
+            myAction: (_args, { context }) =>
               expect(context.dbUsername).toEqual('peterp'),
-            afterAction: ({ context }) =>
+            afterAction: (_args, { context }) =>
               expect(context.dbUsername).toEqual('peterp'),
           },
         },
@@ -81,13 +79,11 @@ describe('Services', () => {
       done()
     })
 
-    it('Passes itself "services" down the context', async (done) => {})
-
     it('Combines initialization and runtime context', async (done) => {
-      const hs = makeServiceObject({
+      const hs = makeMergedServices({
         services: {
           ctxTest: {
-            myAction: ({ context }) =>
+            myAction: (_args, { context }) =>
               expect(context.fromRuntime).toEqual('yo yo yo'),
           },
         },
