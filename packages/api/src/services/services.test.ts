@@ -1,6 +1,6 @@
 import { isTSAnyKeyword, exportAllDeclaration } from '@babel/types'
 
-import { makeServices } from './services'
+import { makeServiceObject } from './services'
 
 const users = {
   create: () => 1,
@@ -14,14 +14,14 @@ const services = { users, todos }
 
 describe('Services', () => {
   it('Combines services together to make the "Hammer Service Object"', async (done) => {
-    const hs = makeServices({ services })
+    const hs = makeServiceObject({ services })
     expect(await hs.users.create()).toEqual(1)
     expect(await hs.todos.create()).toEqual(2)
     done()
   })
 
   it('Resolves promises and executes functions', async (done) => {
-    const hs = makeServices({ services })
+    const hs = makeServiceObject({ services })
     expect(await hs.todos.create()).toEqual(2)
     expect(await hs.todos.asyncToggleDone()).toEqual(4)
     done()
@@ -29,7 +29,7 @@ describe('Services', () => {
 
   it('Executes "beforeAction," "realAction," and "afterAction" in the correct order', async (done) => {
     const mockFn = jest.fn((n) => n)
-    const hs = makeServices({
+    const hs = makeServiceObject({
       services: {
         yoyo: {
           beforeAction: () => mockFn(1),
@@ -48,7 +48,7 @@ describe('Services', () => {
   })
 
   it('Supplies a "servicePath" argument', async (done) => {
-    const hs = makeServices({
+    const hs = makeServiceObject({
       services: {
         posts: {
           allPosts: ({ servicePath }) =>
@@ -62,7 +62,7 @@ describe('Services', () => {
 
   describe('context', () => {
     it('Passes an initialization context object to each service', async (done) => {
-      const hs = makeServices({
+      const hs = makeServiceObject({
         services: {
           ctxTest: {
             beforeAction: ({ context }) =>
@@ -84,7 +84,7 @@ describe('Services', () => {
     it('Passes itself "services" down the context', async (done) => {})
 
     it('Combines initialization and runtime context', async (done) => {
-      const hs = makeServices({
+      const hs = makeServiceObject({
         services: {
           ctxTest: {
             myAction: ({ context }) =>

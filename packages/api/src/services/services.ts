@@ -63,13 +63,13 @@ const SKIP_SERVICE_FUNCTION_WRAPPERS = ['beforeAction', 'afterAction']
  *
  * ```js
  * // src/services/index.js
- * import { makeServices } from '@hammerframework/api'
- * import { photon } from '@prisma/photon'
+ * import { makeServiceObject } from '@hammerframework/api'
+ * import { Photon } from '@prisma/photon'
  *
  * import * as todos from './todos'
  * import * as users from './users'
  *
- * export const services = makeServices({
+ * export const services = makeServiceObject({
  *  services: { todos, users },
  *  context: {
  *    photon: new Photon(),
@@ -98,7 +98,7 @@ const SKIP_SERVICE_FUNCTION_WRAPPERS = ['beforeAction', 'afterAction']
  *
  * ```
  */
-export const makeServices = ({
+export const makeServiceObject = ({
   services,
   context: serviceContext = {},
   copyFromContextToArgs = [],
