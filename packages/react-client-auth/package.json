@@ -1,0 +1,37 @@
+{
+  "name": "@hammerframework/react-client-auth",
+  "version": "0.0.1-alpha.14",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "core-js": "3.6.0"
+  },
+  "devDependencies": {
+    "react": "16.12.0",
+    "@testing-library/react-hooks": "3.2.1",
+    "react-test-renderer": "16.12.0",
+    "react-netlify-identity": "0.1.9",
+    "react-use-auth": "0.5.3",
+    "gotrue-js": "0.9.25",
+    "auth0-js": "9.12.1"
+  },
+  "peerDependencies": {
+    "react": "16.x.x"
+  },
+  "optionalDependencies": {
+    "react-netlify-identity": "0.1.9",
+    "react-use-auth": "0.5.3",
+    "gotrue-js": "0.9.25"
+  },
+  "scripts": {
+    "build": "yarn clean && babel src -d dist",
+    "build:watch": "nodemon --ignore dist --exec 'yarn build'",
+    "prepublish": "yarn build",
+    "clean": "rm -rf dist",
+    "test": "jest",
+    "test:watch": "yarn test --watch"
+  }
+}
