@@ -11,18 +11,18 @@ export type Config = {
 export type Paths = {
   base: string
   web: {
+    src: string
     routes: string
     pages: string
     components: string
     layouts: string
-    src: string
   }
   api: {
+    src: string
     db: string
     functions: string
     graphql: string
     services: string
-    src: string
   }
 }
 export type PagesDependency = {
