@@ -1,15 +1,11 @@
-// We use the recommended babel configuration for monorepos, which is a base directory
-// `babel.config.mjs` file, but then use a per-project `.babelrc.mjs` file.
-// Learn more: https://babeljs.io/docs/en/config-files#monorepos
-
 const TARGETS_NODE = '12.13.0'
 const TARGETS_BROWSERS = 'defaults'
 const CORE_JS_VERSION = '3.6.0'
 
 /**
- * Preset for targetting an environment, either "node" or "browsers"
+ * Preset for targetting an environment, which can be either "node" or "browsers"
  */
-export const presetEnvConfig = (target, ...rest) => {
+const presetEnvConfig = (target, ...rest) => {
   return [
     '@babel/preset-env',
     {
@@ -35,7 +31,7 @@ export const presetEnvConfig = (target, ...rest) => {
  * import { ComponentName } from 'src/components/ComponentName'
  * ```
  */
-export const pluginModuleResolveAliasSrcDir = () => {
+const pluginModuleResolveAliasSrcDir = () => {
   return [
     'babel-plugin-module-resolver',
     {
@@ -46,12 +42,7 @@ export const pluginModuleResolveAliasSrcDir = () => {
   ]
 }
 
-export default {
-  presets: ['@babel/preset-react', '@babel/typescript'],
-  plugins: [
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
-    ['@babel/plugin-proposal-export-default-from'],
-    ['@babel/plugin-proposal-object-rest-spread'],
-  ],
-  ignore: ['**/*.test.js', '**/__tests__', '**/__mocks__'],
+module.exports = {
+  presetEnvConfig: presetEnvConfig,
+  pluginModuleResolveAliasSrcDir: pluginModuleResolveAliasSrcDir,
 }
