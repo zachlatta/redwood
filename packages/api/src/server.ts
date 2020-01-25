@@ -8,5 +8,7 @@ import { ApolloServer, Config } from 'apollo-server-lambda'
  * ```
  */
 export const server = (options: Config): ApolloServer => {
+  // import the schema
+
   return new ApolloServer(options)
 }
