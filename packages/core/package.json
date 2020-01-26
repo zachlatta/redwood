@@ -8,11 +8,15 @@
   "types": "./dist/main.d.ts",
   "license": "MIT",
   "dependencies": {
+    "babel-plugin-macros": "^2.8.0",
     "findup-sync": "^4.0.0",
+    "glob": "^7.1.6",
     "toml": "^3.0.0"
   },
   "devDependencies": {
-    "@types/findup-sync": "^2.0.2"
+    "@types/babel-plugin-macros": "^2.8.0",
+    "@types/findup-sync": "^2.0.2",
+    "babel-plugin-tester": "^8.0.1"
   },
   "scripts": {
     "clean": "rm -rf dist",
@@ -23,6 +27,11 @@
     "prepare": "yarn build",
     "test": "jest",
     "test:watch": "yarn test --watch"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "__tests__/fixtures"
+    ]
   },
   "gitHead": "ca5de73e28e7f9c034232a2dc5d5e810fcb14a0a"
 }

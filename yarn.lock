@@ -3008,7 +3008,14 @@
   resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.39.tgz#da83cf7a82695a8904e383d705829fecf96b7db2"
   integrity sha512-6qxQ4wS636AapVvDbzltI/Xn69QWxjcvohvxd/+MTWzdE9Vqz1xgERr38jEbBGEkyyG8y819nAhjGsiY6KNh1A==
 
-"@types/babel__core@^7.1.0":
+"@types/babel-plugin-macros@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@types/babel-plugin-macros/-/babel-plugin-macros-2.8.0.tgz#e2d890cd6f53e344de45b87090e0c1a8ae2b834c"
+  integrity sha512-ulOJ7EyfIaLkR++M5goEeL0iGykFIDU34HJ8mm2rkEh4ZfZ+hcbZ1bbcZxy/xdNy8mdJd4nG9FpnxFKHqWI6vg==
+  dependencies:
+    "@types/babel__core" "*"
+
+"@types/babel__core@*", "@types/babel__core@^7.1.0":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.3.tgz#e441ea7df63cd080dfcd02ab199e6d16a735fc30"
   integrity sha512-8fBo0UR2CcwWxeX7WIIgJ7lXjasFxoYgRnFHUj+hRvKkpiBJbxhdAPTCY6/ZKM0uxANFVzt4yObSLuTiTnazDA==
@@ -3919,7 +3926,7 @@ apollo-server-caching@^0.5.1:
   dependencies:
     lru-cache "^5.0.0"
 
-apollo-server-core@^2.9.16:
+apollo-server-core@^2.9.9:
   version "2.9.16"
   resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.9.16.tgz#b4c869a6babfa6906fbbf1e6facf3b7231dbf777"
   integrity sha512-4ftdjSfs/3aEare9QNTVSF0yUvXETxiohuDLZ7gmMIQxNnZhUjVXiZL1rYKuIZ12uH7xLvh/DwkXRt6nLG/lZA==
@@ -3959,16 +3966,16 @@ apollo-server-errors@^2.3.4:
   resolved "https://registry.yarnpkg.com/apollo-server-errors/-/apollo-server-errors-2.3.4.tgz#b70ef01322f616cbcd876f3e0168a1a86b82db34"
   integrity sha512-Y0PKQvkrb2Kd18d1NPlHdSqmlr8TgqJ7JQcNIfhNDgdb45CnqZlxL1abuIRhr8tiw8OhVOcFxz2KyglBi8TKdA==
 
-apollo-server-lambda@2.9.16:
-  version "2.9.16"
-  resolved "https://registry.yarnpkg.com/apollo-server-lambda/-/apollo-server-lambda-2.9.16.tgz#58cb257cb2a4970070a5784fbae4109c05900795"
-  integrity sha512-MrY3Z+5tu56lDtbB11hj4bSLceteAHYOK/VyRSGNeeX5izBSR4rFB8GAbStqdrMkMFMSkFrIkTiAt86RfqYaLQ==
+apollo-server-lambda@2.9.9:
+  version "2.9.9"
+  resolved "https://registry.yarnpkg.com/apollo-server-lambda/-/apollo-server-lambda-2.9.9.tgz#bbb258cf32d79044b1fd7364d2e2682169f0edf2"
+  integrity sha512-5kcy9zRKmP2WoBkoVMBgw1XzctpxQQg5R2t1f8PrEurvp4EVk+dUOQI65XE1exJzpF1Ik9EbFwPc7hcYFJjKog==
   dependencies:
     "@apollographql/graphql-playground-html" "1.6.24"
     "@types/aws-lambda" "^8.10.31"
-    apollo-server-core "^2.9.16"
+    apollo-server-core "^2.9.9"
     apollo-server-env "^2.4.3"
-    apollo-server-types "^0.2.10"
+    apollo-server-types "^0.2.5"
     graphql-tools "^4.0.0"
 
 apollo-server-plugin-base@^0.6.10:
@@ -3978,7 +3985,7 @@ apollo-server-plugin-base@^0.6.10:
   dependencies:
     apollo-server-types "^0.2.10"
 
-apollo-server-types@^0.2.10:
+apollo-server-types@^0.2.10, apollo-server-types@^0.2.5:
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/apollo-server-types/-/apollo-server-types-0.2.10.tgz#017ee0c812e70b0846826834eb2c9eda036c1c7a"
   integrity sha512-ke9ViPEWfW+2XLe66CaKGVZdS7duSLbamSKSprmmeMBd8s6tmjf0FumUVxV7X4quxPZi0OPo8x0LoLU7GWsmaA==
@@ -4320,7 +4327,7 @@ babel-plugin-jest-hoist@^25.1.0:
   dependencies:
     "@types/babel__traverse" "^7.0.6"
 
-babel-plugin-macros@^2.0.0, babel-plugin-macros@^2.8.0:
+babel-plugin-macros@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-macros/-/babel-plugin-macros-2.8.0.tgz#0f958a7cc6556b1e65344465d99111a1e5e10138"
   integrity sha512-SEP5kJpfGYqYKpBrj5XU3ahw5p5GOHJ0U5ssOSQ/WBVdwkD2Dzlce95exQTs3jOVWPPKLBN2rlEWkCK7dSmLvg==
@@ -4350,6 +4357,15 @@ babel-plugin-module-resolver@^4.0.0:
     pkg-up "^3.1.0"
     reselect "^4.0.0"
     resolve "^1.13.1"
+
+babel-plugin-tester@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-8.0.1.tgz#6cffa9b9d508a567139339afc74c97c64b62f131"
+  integrity sha512-5PN7FR1oxbTiA7JUdInT+vFkgu6ckYL5moRzWf5T7hAq+QX5cbcHpoXNHu1x7SQHCEZwYMhN1HzZoqeolNaO2g==
+  dependencies:
+    lodash.mergewith "^4.6.2"
+    prettier "^1.19.1"
+    strip-indent "^3.0.0"
 
 babel-preset-jest@^25.1.0:
   version "25.1.0"
@@ -5415,11 +5431,6 @@ core-js@3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.0.tgz#2b854e451de1967d1e29896025cdc13a2518d9ea"
   integrity sha512-AHPTNKzyB+YwgDWoSOCaid9PUSEF6781vsfiK8qUz62zRR448/XgK2NtCbpiUGizbep8Lrpt0Du19PpGGZvw3Q==
-
-core-js@3.6.4:
-  version "3.6.4"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.4.tgz#440a83536b458114b9cb2ac1580ba377dc470647"
-  integrity sha512-4paDGScNgZP2IXXilaffL9X7968RuvwlkK3xWtZRVqgd8SYNiVKRJvkFd1aqqEuPfN7E68ZHEp9hDj6lHj4Hyw==
 
 core-js@^3.0.1, core-js@^3.2.1:
   version "3.6.1"
@@ -7878,14 +7889,6 @@ ignore@^4.0.3, ignore@^4.0.6:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
 
-import-all.macro@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/import-all.macro/-/import-all.macro-2.0.3.tgz#3e5de28920eb7237badb85acf15eb71c8d5b04f6"
-  integrity sha512-uOdSLEY4/DQ2L7AWlx/NbX/qseStklzBD525oeWFPRvb5ScHQXouu37ItQi0RB0pG01WtmLYMLsfoQcyTHOFxA==
-  dependencies:
-    babel-plugin-macros "^2.0.0"
-    glob "^7.1.2"
-
 import-fresh@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-2.0.0.tgz#d81355c15612d386c61f9ddd3922d4304822a546"
@@ -9284,6 +9287,11 @@ lodash.merge@^4.6.2:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
+lodash.mergewith@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz#617121f89ac55f59047c7aec1ccd6654c6590f55"
+  integrity sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==
+
 lodash.set@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/lodash.set/-/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
@@ -9668,6 +9676,11 @@ mimic-response@^1.0.0, mimic-response@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mimic-response/-/mimic-response-1.0.1.tgz#4923538878eef42063cb8a3e3b0798781487ab1b"
   integrity sha512-j5EctnkH7amfV/q5Hgmoal1g2QHFJRraOtmx0JpIqkxhBhI/lJSl1nMpQ45hVarwNETOoWEimndZ4QK0RHxuxQ==
+
+min-indent@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/min-indent/-/min-indent-1.0.0.tgz#cfc45c37e9ec0d8f0a0ec3dd4ef7f7c3abe39256"
+  integrity sha1-z8RcN+nsDY8KDsPdTvf3w6vjklY=
 
 mini-css-extract-plugin@^0.8.0:
   version "0.8.2"
@@ -12565,6 +12578,13 @@ strip-indent@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-2.0.0.tgz#5ef8db295d01e6ed6cbf7aab96998d7822527b68"
   integrity sha1-XvjbKV0B5u1sv3qrlpmNeCJSe2g=
+
+strip-indent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-3.0.0.tgz#c32e1cee940b6b3432c771bc2c54bcce73cd3001"
+  integrity sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==
+  dependencies:
+    min-indent "^1.0.0"
 
 strip-json-comments@^3.0.1:
   version "3.0.1"
