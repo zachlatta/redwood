@@ -3,6 +3,8 @@ import plugin from 'babel-plugin-macros'
 
 const MACRO_IMPORT_PATH = '../importAll.macro.js'
 
+jest.mock('../paths')
+
 pluginTester({
   plugin,
   snapshot: true,
@@ -12,11 +14,11 @@ pluginTester({
   tests: {
     'api.services': `
       import importAll from '${MACRO_IMPORT_PATH}'
-      const serviceImports = importAll('./fixtures/api/src/services/')
+      const serviceImports = importAll('api', 'services')
     `,
     'api.graphql': `
       import importAll from '${MACRO_IMPORT_PATH}'
-      const graphQLImports = importAll('./fixtures/api/src/graphql/')
+      const graphQLImports = importAll('api', 'graphql')
     `,
   },
 })

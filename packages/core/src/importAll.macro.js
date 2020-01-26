@@ -3,6 +3,8 @@ const path = require('path')
 const { createMacro } = require('babel-plugin-macros')
 const glob = require('glob')
 
+import { getPaths } from './paths'
+
 // This code is copied from `importAll.macro`
 // https://github.com/kentcdodds/import-all.macro
 
@@ -21,11 +23,12 @@ function prevalMacros({ references, state, babel }) {
 }
 
 const getGlobPattern = (callExpressionPath) => {
+  const redwoodPaths = getPaths()
   try {
-    const argValue = callExpressionPath.parentPath
-      .get('arguments')[0]
-      .evaluate().value
-    return `${argValue}/*.{ts,js}`
+    const args = callExpressionPath.parentPath.get('arguments')
+    const platformKey = args[0].evaluate().value
+    const dirKey = args[1].evaluate().value
+    return `${redwoodPaths[platformKey][dirKey]}/*.{ts,js}`
   } catch (e) {
     throw new Error('The')
   }
@@ -33,14 +36,8 @@ const getGlobPattern = (callExpressionPath) => {
 
 function importAll({ referencePath, state, babel }) {
   const t = babel.types
-
-  const filename = state.file.opts.filename
-
   const globPattern = getGlobPattern(referencePath)
-
-  const importSources = glob.sync(globPattern, {
-    cwd: path.dirname(filename),
-  })
+  const importSources = glob.sync(globPattern)
 
   const { importNodes, objectProperties } = importSources.reduce(
     (all, source) => {
