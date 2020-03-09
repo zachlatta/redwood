@@ -135,8 +135,7 @@ const installNodeModulesTasks = ({ newAppDir }) => {
     {
       title: 'Running `yarn install`... (Could take awhile)',
       task: () => {
-        // return execa('yarn install', {
-        return execa('echo "yarn install"', {
+        return execa('yarn install', {
           shell: true,
           cwd: newAppDir,
         })
