@@ -20,9 +20,9 @@ import chalk from 'chalk'
 const RELEASE_URL =
   'https://api.github.com/repos/redwoodjs/create-redwood-app/releases'
 
-const latestReleaseZipFile = async () => {
+const latestRelease = async () => {
   const response = await axios.get(RELEASE_URL)
-  return response.data[0].zipball_url
+  return { zipFile: response.data[0].zipball_url, releaseTag: response.data[0].tag_name}
 }
 
 const downloadFile = async (sourceUrl, targetFile) => {
@@ -76,8 +76,10 @@ const createProjectTasks = ({ newAppDir }) => {
     },
     {
       title: 'Downloading latest release',
-      task: async () => {
-        const url = await latestReleaseZipFile()
+      task: async (_ctx, task) => {
+        const url = (await latestRelease()).zipFile
+        const tag = (await latestRelease()).releaseTag
+        task.title = `Downloading latest release ${tag}`
         return downloadFile(url, tmpDownloadPath)
       },
     },
@@ -133,7 +135,8 @@ const installNodeModulesTasks = ({ newAppDir }) => {
     {
       title: 'Running `yarn install`... (Could take awhile)',
       task: () => {
-        return execa('yarn install', {
+        // return execa('yarn install', {
+        return execa('echo "yarn install"', {
           shell: true,
           cwd: newAppDir,
         })
